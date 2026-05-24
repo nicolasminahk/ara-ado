@@ -41,7 +41,7 @@
   .video,.embed{padding:0;align-items:center;justify-items:center;background:#000}
   .video .frame,.embed .frame{position:relative;z-index:3;width:min(100vw,1600px);height:100svh;display:grid;place-items:center;background:#090909;overflow:hidden}
   .video .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .album{width:min(1080px,82vw);min-height:560px;background:#171717;border:1px solid var(--line);display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;padding:36px;box-shadow:0 20px 80px rgba(0,0,0,.5)}
+  .album{position:relative;z-index:2;width:min(1080px,82vw);min-height:560px;background:#171717;border:1px solid var(--line);display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;padding:36px;box-shadow:0 20px 80px rgba(0,0,0,.5)}
   .album-cover{background:url('assets/bg/p06.jpg') center/cover;border-radius:2px;min-height:420px}
   .tracks{display:grid;align-content:center;gap:20px}
 
@@ -80,6 +80,22 @@
   .bio-dots{position:absolute;z-index:7;bottom:20px;left:50%;translate:-50% 0;display:flex;gap:10px;padding:8px}
   .bio-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:background .4s var(--ease),transform .4s var(--ease)}
   .bio-dot.active{background:#fff;transform:scale(1.4)}
+
+  /* Person card hover */
+  .person:hover{transform:scale(1.03);z-index:2}
+  .person span{transition:transform .45s var(--ease)}
+  .person:hover span{transform:translateY(-4px)}
+
+  /* Tracklist pre-escucha */
+  .tl-list{list-style:none;margin:8px 0 0;padding:0;display:grid}
+  .tl-item{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07);cursor:default}
+  .tl-item:last-child{border-bottom:none}
+  .tl-item.locked{opacity:.32}
+  .tl-num{font-size:12px;color:rgba(255,255,255,.36);min-width:16px;text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+  .tl-name{font-size:clamp(13px,1.2vw,15px);font-weight:500;flex:1;line-height:1.25}
+  .tl-name em{font-style:normal;font-size:.88em;color:var(--muted)}
+  .tl-cta{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:12px 22px;border:1.5px solid rgba(255,255,255,.28);border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,background .3s;color:#fff}
+  .tl-cta:hover{border-color:#fff;background:rgba(255,255,255,.07)}
 
   /* Utils */
   .car-static{position:relative;z-index:2;width:min(820px,86vw);height:min(520px,54svh);background:url('assets/bg/p34.jpg') center/contain no-repeat;filter:drop-shadow(0 34px 74px rgba(0,0,0,.95));animation:carFloat 5.8s ease-in-out infinite}
@@ -171,8 +187,20 @@
     <div class="album-cover"></div>
     <div class="tracks">
       <div class="kicker">ARAÑADO</div>
-      <p style="color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:2px 0 4px">Pre-escucha</p>
-      <iframe id="untitledIframe" style="border-radius:24px" src="" width="100%" height="344" allowfullscreen allow="picture-in-picture" frameborder="0"></iframe>
+      <p style="color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:2px 0 0">yesan · 10 canciones · 33m</p>
+      <ol class="tl-list">
+        <li class="tl-item"><span class="tl-num">1</span><span class="tl-name">Arañado</span></li>
+        <li class="tl-item locked"><span class="tl-num">2</span><span class="tl-name">Carne, hueso &amp; metal</span></li>
+        <li class="tl-item"><span class="tl-num">3</span><span class="tl-name">Si estás soltera</span></li>
+        <li class="tl-item"><span class="tl-num">4</span><span class="tl-name">Irreversible <em>ft.</em></span></li>
+        <li class="tl-item"><span class="tl-num">5</span><span class="tl-name">Pie de plomo <em>ft. Andy Vilanova</em></span></li>
+        <li class="tl-item"><span class="tl-num">6</span><span class="tl-name">Reloj de arena</span></li>
+        <li class="tl-item"><span class="tl-num">7</span><span class="tl-name">Luciérnaga <em>ft. Bhavi</em></span></li>
+        <li class="tl-item"><span class="tl-num">8</span><span class="tl-name">Fiera <em>ft. Juicy Bae</em></span></li>
+        <li class="tl-item locked"><span class="tl-num">9</span><span class="tl-name">···</span></li>
+        <li class="tl-item locked"><span class="tl-num">10</span><span class="tl-name">···</span></li>
+      </ol>
+      <a href="https://untitled.stream/bXesLi1tcy4J" target="_blank" rel="noopener" class="tl-cta">Escuchar en Untitled →</a>
     </div>
   </div>
 </section>
@@ -290,20 +318,6 @@ const videoObs=new IntersectionObserver(entries=>{
 },{threshold:0.05});
 videoObs.observe(document.getElementById('teaser'));
 
-// ── Untitled embed: lazy-load después del reveal ─────────────────
-const untitledIframe=document.getElementById('untitledIframe');
-let untitledLoaded=false;
-const untitledObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting&&!untitledLoaded){
-      untitledLoaded=true;
-      setTimeout(()=>{untitledIframe.src='https://untitled.stream/embed/bXesLi1tcy4J';},700);
-      untitledObs.unobserve(e.target);
-    }
-  });
-},{threshold:0.1});
-untitledObs.observe(document.getElementById('album'));
-
 // ── Car 3D tilt on mouse move ────────────────────────────────────
 const carEl=document.querySelector('.car-static');
 const carSection=document.getElementById('contacto');
@@ -323,7 +337,7 @@ if(carEl&&carSection){
 
 // ── People grid ─────────────────────────────────────────────────
 const people=[
-  {n:'ANDY VILANOVA',img:'p21',role:'Baterista',feat:'ft. en Pies de plomo',
+  {n:'ANDY VILANOVA',img:'p21',bg:'linear-gradient(160deg,#141422 0%,#0d0d1a 100%)',role:'Baterista',feat:'ft. en Pies de plomo',
    intro:'Uno de los bateristas más explosivos, versátiles y respetados de la escena argentina. Su estilo combina técnica extrema, musicalidad y una intensidad física poco común, convirtiéndolo en una referencia indiscutida de la batería pesada en Latinoamérica.',
    body:'Reconocido por su participación en Carajo y A.N.I.M.A.L. — dos de las bandas más influyentes del rock pesado en español —, Andy construyó una carrera marcada por la potencia escénica, el virtuosismo y la energía en vivo. En los últimos años trasladó esa impronta al universo urbano trabajando junto a Duki en shows masivos y producciones de gran escala, aportando una fuerza rockera y una contundencia en vivo que ayudaron a redefinir el sonido de las giras urbanas en Argentina.'},
   {n:'BHAVI',img:'p22',role:'Cantante',feat:'ft. en Luciérnaga',
@@ -350,13 +364,13 @@ const people=[
   {n:'CASA AXIS',img:'p29',role:'Sede y Estudio',feat:'',
    intro:'La casa estudio de Felipe Pantone. En la discoteca de Casa Axis, espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina (Admire Audio), se realiza un camp crucial para Arañado.',
    body:'En la discoteca de Casa Axis —espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina— se realiza un camp crucial para Arañado. Durante una semana, Yesan, Barreto y Dano se internaron a perfeccionar el disco. Felipe Pantone introdujo a Dani Reina.'},
-  {n:'BRIAN TAYLOR',img:'p30',role:'Ingeniero de mezcla · Productor Musical',feat:'',
+  {n:'BRIAN TAYLOR',img:'p30',bg:'#050505',role:'Ingeniero de mezcla · Productor Musical',feat:'',
    intro:'Brian Taylor es un músico, ingeniero de mezcla y productor argentino reconocido por su versatilidad y su trabajo en algunos de los proyectos más importantes de la música argentina contemporánea.',
    body:'Ganador del Premio Gardel de Oro por su trabajo junto a Trueno y Marilina Bertoldi, se consolidó como una de las figuras técnicas y creativas más destacadas de la nueva generación. Destaca su trabajo en "Ameri" de Duki, "Atrevido" y "Bien o Mal" de Trueno, "Prender un fuego" de Marilina Bertoldi, entre otros.'},
   {n:'ANDRÉS MAYO',img:'p32',role:'Ingeniero de Mastering',feat:'',
    intro:'Andrés Mayo es un productor musical, ingeniero de mastering y referente técnico del audio argentino, reconocido internacionalmente por su trabajo en música, restauración sonora y audio de alta definición.',
    body:'Trabajó con artistas como Gustavo Cerati, Charly García, Luis Alberto Spinetta, Pedro Aznar y Soda Stereo, además de participar en proyectos para cine, plataformas digitales y reediciones históricas latinoamericanas. Es uno de los principales impulsores del audio inmersivo y el mastering en Dolby Atmos en habla hispana, combinando ingeniería de precisión, preservación patrimonial y experimentación tecnológica aplicada al sonido.'},
-  {n:'GONZALO SOLIMANO',img:'p31',role:'Curador y Director',feat:'',
+  {n:'GONZALO SOLIMANO',img:'p31',bg:'#050505',role:'Curador y Director',feat:'',
    intro:'Gonzalo Solimano es un artista, DJ, productor cultural y curador argentino, reconocido por ser el fundador de Artlab y director de MUTEK Argentina, dos de los proyectos más influyentes del cruce entre arte, música electrónica y tecnología en Buenos Aires.',
    body:'Su trabajo combina sonido, arte digital, inteligencia artificial, visuales inmersivas y experiencias interdisciplinarias, construyendo una estética vinculada a la sensibilidad contemporánea y la cultura electrónica experimental. Desde Artlab impulsó residencias, exposiciones, ciclos audiovisuales y colaboraciones internacionales que posicionaron a Buenos Aires como uno de los polos más activos de arte digital y creatividad tecnológica en Latinoamérica.'},
   {n:'ELEFANTE DIAMANTE',img:'p33',role:'Realización Audiovisual',feat:'',
@@ -367,12 +381,14 @@ const grid=document.getElementById('peopleGrid'),modal=document.getElementById('
 people.forEach(p=>{
   let b=document.createElement('button');
   b.className='person';
-  b.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;
+  if(p.bg){b.style.cssText=`background:${p.bg}`;}
+  else{b.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;}
   b.innerHTML=`<span>${p.n}</span>`;
   b.onclick=()=>{
     modal.classList.add('open');
     document.body.style.overflow='hidden';
-    modalCard.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;
+    if(p.bg){modalCard.style.background=p.bg;modalCard.style.backgroundSize='';}
+    else{modalCard.style.background=`#000 url('assets/bg/${p.img}.jpg') center/cover`;}
     document.getElementById('modalName').textContent=p.n;
     document.getElementById('modalRole').textContent=p.role;
     document.getElementById('modalFeat').textContent=p.feat;
