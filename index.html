@@ -5,56 +5,386 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>YESAN — ARAÑADO</title>
 <style>
-  :root{--fg:#fff;--bg:#030303;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.22);--ease:cubic-bezier(.16,1,.3,1)}
+  :root{--fg:#fff;--bg:#030303;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.22);--ease:cubic-bezier(.22,1,.36,1)}
   *{box-sizing:border-box} html{scroll-behavior:smooth;background:#000} body{margin:0;background:var(--bg);color:var(--fg);font-family:"Helvetica Now Display","Helvetica LT Pro","Arial Narrow",Arial,sans-serif;text-transform:none;overflow-x:hidden} a{color:inherit} button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-  .nav{position:fixed;z-index:50;inset:0 0 auto 0;height:86px;display:flex;align-items:center;justify-content:space-between;padding:24px clamp(22px,4vw,56px);pointer-events:none}.nav>*{pointer-events:auto}.brand{font-weight:900;letter-spacing:-.03em;font-size:clamp(24px,3vw,36px);line-height:.8}.mark{width:48px;height:48px;display:block;object-fit:contain;opacity:.98}.hamb{width:36px;height:28px;display:grid;gap:6px}.hamb span{display:block;height:5px;background:#fff;border-radius:1px}.menu{position:fixed;z-index:70;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);display:grid;place-items:center;transform:translateY(-100%);transition:.75s var(--ease)}.menu.open{transform:none}.menu a{display:block;font-weight:900;text-decoration:none;font-size:clamp(42px,10vw,120px);letter-spacing:-.07em;line-height:.86;text-transform:uppercase}.close{position:absolute;top:28px;right:34px;font-size:42px}.section{min-height:100svh;position:relative;overflow:hidden;display:grid;align-items:end;padding:120px clamp(28px,6vw,92px) 64px}.bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);filter:brightness(.62);transition:opacity 1s var(--ease),transform 8s linear}.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.24) 45%,rgba(0,0,0,.62))}.hero{align-items:center;justify-items:center;text-align:center}.hero-title{position:relative;z-index:2;font-size:clamp(82px,18vw,230px);font-weight:900;letter-spacing:-.07em;line-height:.75}.down{position:absolute;z-index:5;bottom:25px;left:50%;translate:-50% 0;font-size:32px;animation:float 1.8s infinite}.kicker{font-weight:900;font-size:clamp(20px,3vw,48px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase}.copy{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,100px);max-width:1180px;width:100%}.copy p{font-size:clamp(17px,1.6vw,26px);line-height:1.1;margin:0;color:var(--muted)}.copy strong,.copy b{color:#fff}.huge{position:relative;z-index:2;font-size:clamp(64px,12vw,170px);font-weight:900;letter-spacing:-.08em;line-height:.78;max-width:1100px;text-transform:none}.center{justify-items:center;text-align:center}.links{position:relative;z-index:4;display:flex;gap:clamp(24px,8vw,120px);margin-top:24px}.links a{font-size:clamp(22px,3vw,46px);font-weight:900;text-transform:uppercase;text-decoration:underline}.bio{align-items:center}.bio-card{position:relative;z-index:2;max-width:920px;margin:auto 0 0 0}.bio-card p{font-size:clamp(23px,3.3vw,56px);letter-spacing:-.045em;line-height:.92;font-weight:900;margin:0;max-width:1050px}.video,.embed{padding:0;align-items:center;justify-items:center;background:#000}.video .frame,.embed .frame{position:relative;z-index:3;width:min(100vw,1600px);height:100svh;display:grid;place-items:center;background:#090909}.play{width:116px;height:116px;border:2px solid #fff;border-radius:50%;display:grid;place-items:center;font-weight:900}.album{width:min(1080px,82vw);min-height:560px;background:#171717;border:1px solid var(--line);display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;padding:36px;box-shadow:0 20px 80px rgba(0,0,0,.5)}.album-cover{background:url('assets/bg/p06.jpg') center/cover;border-radius:2px;min-height:420px}.tracks{display:grid;align-content:center;gap:16px}.track{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:12px 0;color:#ddd}.grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;min-height:78svh;margin-top:60px}.person{position:relative;min-height:35svh;background:#111 center/cover;display:flex;align-items:end;padding:18px;overflow:hidden}.person:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72));transition:.5s}.person:hover:before{background:rgba(0,0,0,.25)}.person span{position:relative;z-index:2;font-size:clamp(18px,2.2vw,36px);font-weight:900;line-height:.86;text-transform:uppercase}.modal{position:fixed;z-index:90;inset:0;background:rgba(0,0,0,.88);display:none;place-items:center;padding:24px}.modal.open{display:grid}.modal-card{position:relative;width:min(1100px,94vw);min-height:72svh;background:#111 center/cover;border:1px solid var(--line);display:grid;align-content:end;padding:clamp(24px,4vw,56px);box-shadow:0 30px 100px #000}.modal-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.78))}.modal-content{position:relative;z-index:2;display:grid;grid-template-columns:.7fr 1fr;gap:42px}.modal h3{font-size:clamp(34px,5vw,72px);line-height:.86;margin:0;text-transform:uppercase;letter-spacing:-.06em}.modal p{margin:0;color:#e8e8e8;font-size:clamp(15px,1.4vw,22px);line-height:1.08}.modal-x{position:absolute;z-index:5;top:16px;right:22px;font-size:38px}.car-static{position:relative;z-index:2;width:min(820px,86vw);height:min(520px,54svh);background:url('assets/bg/p34.jpg') center/contain no-repeat;filter:drop-shadow(0 34px 74px rgba(0,0,0,.95));animation:carFloat 5.8s ease-in-out infinite}.car-static:after{content:"";position:absolute;left:14%;right:14%;bottom:7%;height:20px;background:rgba(0,0,0,.72);filter:blur(18px);border-radius:50%;z-index:-1}.contact{position:absolute;z-index:2;bottom:52px;left:50%;translate:-50% 0;text-align:center}.contact h3{font-size:28px;margin:0 0 22px}.contact p{font-size:16px;color:var(--muted)}.reveal{opacity:0;transform:translateY(38px);transition:1s var(--ease)}.reveal.in{opacity:1;transform:none}#crack{position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.62}.glass-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.045),transparent 28%,rgba(255,255,255,.018) 55%,transparent 72%);backdrop-filter:blur(.45px);opacity:.72}.bio-sticky{height:520svh;padding:0;display:block;overflow:visible;background:#000}.bio-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;align-items:end;padding:120px clamp(28px,6vw,92px) 64px}.bio-base{position:absolute;inset:0;background:url('assets/bg/p07.jpg') center/cover;filter:brightness(.38);transform:scale(1.04)}.bio-layer{position:absolute;inset:0;opacity:0;transform:translateY(42px) scale(1.035);transition:opacity .75s var(--ease),transform 1s var(--ease);background-position:center;background-size:cover;filter:brightness(.56)}.bio-layer.active{opacity:.78;transform:none}.bio-layer.exit{opacity:0;transform:translateY(-42px) scale(1.02)}.bio-text{position:relative;z-index:5;max-width:min(980px,88vw);font-size:clamp(28px,4.4vw,74px);letter-spacing:-.06em;line-height:.88;font-weight:900;margin:0;text-shadow:0 18px 70px rgba(0,0,0,.8);opacity:0;transform:translateY(44px);transition:opacity .75s var(--ease),transform .95s var(--ease)}.bio-text.active{opacity:1;transform:none}.bio-meta{position:absolute;z-index:6;right:clamp(24px,5vw,74px);bottom:58px;font-size:13px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}@keyframes carFloat{50%{transform:translateY(-10px) rotate(-.7deg)}}@keyframes float{50%{transform:translateY(9px)}}@media(max-width:800px){.bio-stage{padding:96px 22px 58px}.bio-text{font-size:clamp(30px,10vw,64px)}.bio-meta{left:22px;right:auto;bottom:28px}.nav{height:72px;padding:18px 22px}.brand{font-size:23px}.mark{width:38px;height:38px}.section{padding:96px 22px 58px}.copy,.modal-content{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.album{grid-template-columns:1fr;width:90vw;min-height:70svh;padding:20px}.album-cover{min-height:260px}.hero-title{font-size:26vw}.links{width:100%;justify-content:space-between;gap:12px}.links a{font-size:24px}.person{min-height:26svh}}
+
+  /* Nav & Menu */
+  .nav{position:fixed;z-index:50;inset:0 0 auto 0;height:86px;display:flex;align-items:center;justify-content:space-between;padding:24px clamp(22px,4vw,56px);pointer-events:none}.nav>*{pointer-events:auto}
+  .brand{font-weight:900;letter-spacing:-.03em;font-size:clamp(24px,3vw,36px);line-height:1}
+  .mark{width:48px;height:48px;display:block;object-fit:contain;opacity:.98}
+  .hamb{width:36px;height:28px;display:grid;gap:6px}.hamb span{display:block;height:5px;background:#fff;border-radius:1px}
+  .menu{position:fixed;z-index:70;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(16px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3vh;transform:translateY(-100%);transition:.8s var(--ease)}
+  .menu.open{transform:none}
+  .menu a{display:block;font-weight:900;text-decoration:none;font-size:clamp(42px,9vw,110px);letter-spacing:-.05em;line-height:1;text-transform:uppercase;text-align:center;transition:color .3s}
+  .menu a:hover{color:rgba(255,255,255,.7)}
+  .close{position:absolute;top:28px;right:34px;font-size:48px}
+
+  /* Sections */
+  .section{min-height:100svh;position:relative;overflow:hidden;display:grid;align-items:end;padding:120px clamp(28px,6vw,92px) 64px}
+  .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);filter:brightness(.62);transition:opacity 1.4s var(--ease)}
+  .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.3) 45%,rgba(0,0,0,.75))}
+
+  /* Typography & Layout */
+  .hero{align-items:center;justify-items:center;text-align:center}
+  .hero-title{position:relative;z-index:2;font-size:clamp(82px,18vw,230px);font-weight:900;letter-spacing:-.07em;line-height:.85}
+  .down{position:absolute;z-index:5;bottom:25px;left:50%;translate:-50% 0;font-size:32px;animation:float 1.8s infinite}
+  .kicker{font-weight:900;font-size:clamp(20px,3vw,48px);line-height:1.1;letter-spacing:-.05em;text-transform:uppercase}
+  .copy{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,100px);max-width:1180px;width:100%}
+  .copy p{font-size:clamp(17px,1.6vw,26px);line-height:1.4;margin:0;color:var(--muted)}
+  .copy strong,.copy b{color:#fff}
+  .huge{position:relative;z-index:2;font-size:clamp(64px,12vw,170px);font-weight:900;letter-spacing:-.08em;line-height:.95;max-width:1100px;text-transform:none}
+  .center{justify-items:center;text-align:center}
+
+  /* Links, Video, Album */
+  .links{position:relative;z-index:4;display:flex;gap:clamp(24px,8vw,120px);margin-top:24px}
+  .links a{font-size:clamp(22px,3vw,46px);font-weight:900;text-transform:uppercase;text-decoration:underline}
+  .video,.embed{padding:0;align-items:center;justify-items:center;background:#000}
+  .video .frame,.embed .frame{position:relative;z-index:3;width:min(100vw,1600px);height:100svh;display:grid;place-items:center;background:#090909;overflow:hidden}
+  .video .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .album{width:min(1080px,82vw);min-height:560px;background:#171717;border:1px solid var(--line);display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;padding:36px;box-shadow:0 20px 80px rgba(0,0,0,.5)}
+  .album-cover{background:url('assets/bg/p06.jpg') center/cover;border-radius:2px;min-height:420px}
+  .tracks{display:grid;align-content:center;gap:20px}
+
+  /* Grid & Person */
+  .grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;min-height:78svh;margin-top:60px}
+  .person{position:relative;min-height:35svh;background:#111 center/cover;display:flex;align-items:end;padding:18px;overflow:hidden;transition:transform .4s var(--ease)}
+  .person:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72));transition:background .6s var(--ease)}
+  .person:hover:before{background:rgba(0,0,0,.15)}
+  .person span{position:relative;z-index:2;font-size:clamp(18px,2.2vw,36px);font-weight:900;line-height:1.05;text-transform:uppercase;text-align:left}
+
+  /* Modal — pantalla completa como en el PDF */
+  .modal{position:fixed;z-index:90;inset:0;background:#000;display:flex;opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+  .modal.open{opacity:1;pointer-events:auto}
+  .modal-card{position:relative;width:100%;background:#000 center/cover;display:grid;align-content:end;padding:clamp(32px,6vw,80px) clamp(28px,6vw,92px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;transform:translateY(24px);transition:transform .7s var(--ease)}
+  .modal-card::-webkit-scrollbar{width:6px}
+  .modal-card::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:3px}
+  .modal.open .modal-card{transform:none}
+  .modal-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04) 30%,rgba(0,0,0,.92));pointer-events:none}
+  .modal-header{position:relative;z-index:2;margin-bottom:28px}
+  .modal h3{font-size:clamp(32px,5vw,72px);line-height:1;margin:0 0 6px;text-transform:uppercase;letter-spacing:-.06em;font-weight:900}
+  .modal .role{font-size:clamp(14px,1.6vw,20px);font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0 0 2px;line-height:1.2}
+  .modal .feat{font-size:clamp(13px,1.2vw,15px);color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.12em;margin:0}
+  .modal-body{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,80px)}
+  .modal-body p{margin:0;color:rgba(255,255,255,.88);font-size:clamp(15px,1.4vw,20px);line-height:1.55}
+  .modal-x{position:absolute;z-index:5;top:24px;right:32px;font-size:42px;opacity:.7;transition:opacity .3s}
+  .modal-x:hover{opacity:1}
+
+  /* Bio Slideshow — capas absolutas que se crossfadean entre sí */
+  .bio-layer{position:absolute;inset:0;opacity:0;transform:scale(1.04);transition:opacity 1.5s var(--ease),transform 2s var(--ease);background-position:center;background-size:cover;filter:brightness(.58)}
+  .bio-layer.active{opacity:1;transform:none}
+  .bio-text{position:relative;z-index:5;max-width:min(980px,88vw);font-size:clamp(28px,4.4vw,74px);letter-spacing:-.05em;line-height:1.1;font-weight:900;margin:0;text-shadow:0 18px 70px rgba(0,0,0,.8);opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+  .bio-text.active{opacity:1;transform:none}
+  .bio-meta{position:absolute;z-index:6;right:clamp(24px,5vw,74px);bottom:58px;font-size:13px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+
+  /* Bio progress dots */
+  .bio-dots{position:absolute;z-index:7;bottom:20px;left:50%;translate:-50% 0;display:flex;gap:10px;padding:8px}
+  .bio-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:background .4s var(--ease),transform .4s var(--ease)}
+  .bio-dot.active{background:#fff;transform:scale(1.4)}
+
+  /* Utils */
+  .car-static{position:relative;z-index:2;width:min(820px,86vw);height:min(520px,54svh);background:url('assets/bg/p34.jpg') center/contain no-repeat;filter:drop-shadow(0 34px 74px rgba(0,0,0,.95));animation:carFloat 5.8s ease-in-out infinite}
+  .car-static:after{content:"";position:absolute;left:14%;right:14%;bottom:7%;height:20px;background:rgba(0,0,0,.72);filter:blur(18px);border-radius:50%;z-index:-1}
+  .contact{position:absolute;z-index:2;bottom:52px;left:50%;translate:-50% 0;text-align:center}
+  .contact h3{font-size:28px;margin:0 0 22px;line-height:1}
+  .contact p{font-size:16px;color:var(--muted);line-height:1.4}
+  .reveal{opacity:0;transform:translateY(45px);transition:1.2s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  #crack{position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.62}
+  .glass-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.045),transparent 28%,rgba(255,255,255,.018) 55%,transparent 72%);backdrop-filter:blur(.45px);opacity:.72}
+
+  /* Keyframes */
+  @keyframes carFloat{0%,100%{transform:perspective(900px) rotateY(var(--rx,0deg)) rotateX(var(--ry,0deg))}50%{transform:perspective(900px) rotateY(var(--rx,0deg)) rotateX(var(--ry,0deg)) translateY(-10px) rotate(-.7deg)}}
+  @keyframes float{50%{transform:translateY(9px)}}
+
+  /* Mobile */
+  @media(max-width:800px){
+    .hero .bg{background-position:top center}
+    .section{padding:96px 22px 58px}
+    .bio-text{font-size:clamp(30px,10vw,64px)}
+    .bio-meta{left:22px;right:auto;bottom:28px}
+    .nav{height:72px;padding:18px 22px}
+    .brand{font-size:23px}
+    .mark{width:38px;height:38px}
+    .copy,.modal-body{grid-template-columns:1fr;gap:24px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .album{grid-template-columns:1fr;width:90vw;min-height:auto;padding:20px}
+    .album-cover{min-height:260px}
+    .hero-title{font-size:26vw}
+    .links{width:100%;justify-content:space-between;gap:12px}
+    .links a{font-size:24px}
+    .person{min-height:26svh}
+  }
 </style>
 </head>
 <body>
 <nav class="nav"><button class="hamb" id="openMenu"><span></span><span></span><span></span></button><div class="brand">ARAÑADO</div><img class="mark" src="assets/logo_nav.png" alt="Arañado logo"></nav>
 <div class="menu" id="menu"><button class="close" id="closeMenu">×</button><a href="#home">Home</a><a href="#bio">Bio</a><a href="#album">Disco</a><a href="#carne">Carne / Hueso / Metal</a><a href="#feats">Feats</a><a href="#contacto">Contacto</a></div>
 <main>
-<section class="section hero" id="home"><div class="bg" id="heroBg"></div><div class="glass-vignette"></div><canvas id="crack"></canvas><div class="shade"></div><h1 class="hero-title reveal">YESAN</h1><div class="down">↓</div></section>
-<section class="bio-sticky" id="bio">
-  <div class="bio-stage">
-    <div class="bio-base"></div>
-    <div class="bio-layer active" style="background-image:url('assets/bg/p07.jpg')"></div>
-    <div class="bio-layer" style="background-image:url('assets/bg/p08.jpg')"></div>
-    <div class="bio-layer" style="background-image:url('assets/bg/p09.jpg')"></div>
-    <div class="bio-layer" style="background-image:url('assets/bg/p10.jpg')"></div>
-    <div class="bio-layer" style="background-image:url('assets/bg/p11.jpg')"></div>
-    <div class="shade"></div>
+
+<!-- HERO: dos capas .bg para crossfade suave -->
+<section class="section hero" id="home">
+  <div class="bg" id="heroBg"></div>
+  <div class="bg" id="heroBg2" style="opacity:0"></div>
+  <div class="glass-vignette"></div>
+  <canvas id="crack"></canvas>
+  <div class="shade"></div>
+  <h1 class="hero-title reveal">YESAN</h1>
+  <div class="down">↓</div>
+</section>
+
+<!-- BIO: sin div.bio-base fijo — las capas se crossfadean entre sí -->
+<section class="section" id="bio" style="padding:0">
+  <div class="bio-layer active" style="background-image:url('assets/bg/p07.jpg')"></div>
+  <div class="bio-layer" style="background-image:url('assets/bg/p08.jpg')"></div>
+  <div class="bio-layer" style="background-image:url('assets/bg/p09.jpg')"></div>
+  <div class="bio-layer" style="background-image:url('assets/bg/p10.jpg')"></div>
+  <div class="bio-layer" style="background-image:url('assets/bg/p11.jpg')"></div>
+  <div class="shade"></div>
+  <div style="position:relative;z-index:5;display:grid;align-items:end;padding:120px clamp(28px,6vw,92px) 80px;min-height:100svh;width:100%">
     <p class="bio-text active">Yesan es una de las figuras más influyentes y creativas de la escena musical argentina de la última década, destacándose como artista multifacético, multiinstrumentista y productor musical.</p>
-    <div class="bio-meta">Bio · Scroll</div>
+    <div class="bio-meta">Bio · Slideshow</div>
     <div class="down">↓</div>
   </div>
+  <div class="bio-dots" id="bioDots"></div>
 </section>
-<section class="section video" id="teaser"><div class="frame"><div class="kicker reveal">FULL FRAME TEASER<br>ARAÑADO</div><button class="play" onclick="alert('Reemplazar por iframe YouTube/Vimeo o archivo MP4 local')">PLAY</button></div></section>
+
+<!-- TEASER: iframe YouTube con autoplay al entrar en viewport -->
+<section class="section video" id="teaser">
+  <div class="frame">
+    <iframe id="videoIframe"
+      src=""
+      title="Full Frame Teaser — ARAÑADO"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
 <section class="section center"><div class="bg" style="background-image:url('assets/bg/p13.jpg')"></div><div class="shade"></div><div><h2 class="huge reveal">ARAÑADO</h2><div class="links reveal"><a href="#carne">Carne</a><a href="#hueso">Hueso</a><a href="#metal">Metal</a></div></div><div class="down">↓</div></section>
-<section class="section embed" id="album"><div class="bg" style="background-image:url('assets/bg/p06.jpg')"></div><div class="shade"></div><div class="album reveal"><div class="album-cover"></div><div class="tracks"><div class="kicker">ARAÑADO</div><div class="track"><span>Arañado</span><span>▶</span></div><div class="track"><span>Carne, hueso & metal</span><span>▶</span></div><div class="track"><span>Si estás sobran</span><span>▶</span></div><div class="track"><span>Irreversible</span><span>▶</span></div><p style="color:var(--muted)">Placeholder Unbundle: pegar iframe real del player cuando esté disponible.</p></div></div></section>
-<section class="section" id="carne"><div class="bg" style="background-image:url('assets/bg/p15.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Exposición Art Lab:<br>Lanzamiento / Pre Escucha.</h2><p>Mezclado y masterizado en Dolby Atmos by Andrés Mayo. Nombre de la exposición: <b>CARNE, HUESO Y METAL</b>.</p></div><p>Propuesta de experiencia inmersiva en colaboración con ArtLab como espacio cultural HiFi: arte digital, tecnología, música y nuevas expresiones culturales.</p></div><div class="down">↓</div></section>
-<section class="section"><div class="bg" style="background-image:url('assets/bg/p16.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Show Niceto</h2><p>Buenos Aires, Argentina. El show es la culminación de un proceso artístico y el punto de partida hacia una nueva etapa de Yesan.</p></div><p>Dos años después del accidente que dio vida a Arañado, el álbum completo se celebra en vivo: una resurrección en VIVO.</p></div><div class="down">↓</div></section>
-<section class="section" id="hueso"><div class="bg" style="background-image:url('assets/bg/p17.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Carne, Hueso y Metal.</h2><p>Casa Axis, Valencia, España. 2027.</p></div><p>La exposición viaja a Casa Axis, hogar de Felipe Pantone, como punto de encuentro para artistas de diversas disciplinas.</p></div><div class="down">↓</div></section>
+
+<!-- DISCO: embed Untitled para pre-escucha -->
+<section class="section embed" id="album">
+  <div class="bg" style="background-image:url('assets/bg/p06.jpg')"></div>
+  <div class="shade"></div>
+  <div class="album reveal">
+    <div class="album-cover"></div>
+    <div class="tracks">
+      <div class="kicker">ARAÑADO</div>
+      <p style="color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:2px 0 4px">Pre-escucha</p>
+      <iframe id="untitledIframe" style="border-radius:24px" src="" width="100%" height="344" allowfullscreen allow="picture-in-picture" frameborder="0"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="carne"><div class="bg" style="background-image:url('assets/bg/p15.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Exposición Art Lab:<br>Lanzamiento / Pre Escucha.</h2><p>Mezclado y masterizado en <b>Dolby Atmos</b> by <b>Andrés Mayo.</b></p><p style="margin-top:10px">Nombre de la Exposición: <b>"CARNE, HUESO Y METAL".</b></p></div><p>Propuesta de experiencia inmersiva en colaboración con <b>ArtLab</b> como espacio cultural HiFi. Artlab es un destacado centro cultural y laboratorio creativo en Buenos Aires que une arte digital, tecnología, música y nuevas expresiones culturales.</p></div><div class="down">↓</div></section>
+<section class="section"><div class="bg" style="background-image:url('assets/bg/p16.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Show Niceto<br>Buenos Aires, Argentina.</h2><p>Este no es un espacio elegido al azar, sino un testigo vivo de las vibras y las melodías que definieron a referentes musicales de incontables generaciones. El show en Niceto es mucho más que un concierto: es la culminación de un proceso artístico y a la vez un punto de partida hacia una nueva etapa de <b>Yesan.</b></p><p style="margin-top:10px"><b>El 11/12/24 marcó el inicio, el día del accidente que dio vida a Arañado.</b></p><p style="margin-top:8px">Dos años después, el <b>11/12/26</b>, lo celebramos tocando el álbum completo, <b>una resurrección en VIVO.</b></p></div><p>Inaugurado en 1998 en Palermo, <b>Niceto Club</b> es un ícono de la música en vivo y la noche de Buenos Aires. Con más de 25 años de trayectoria, el recinto es reconocido por su eclecticismo, albergando desde bandas emergentes hasta artistas internacionales de renombre.<br><br>Artistas que pasaron por los escenarios de Niceto: <i>Tame Impala, Macy Gray, Oliver Tree, Babasónicos, Él Mató a un Policía Motorizado, Juana Molina, Miranda!, Ysy A, Milo J</i>, y muchos más.</p></div><div class="down">↓</div></section>
+<section class="section" id="hueso"><div class="bg" style="background-image:url('assets/bg/p17.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Carne, Hueso y Metal.</h2><p>Casa Axis, Valencia, España. 2027.</p></div><p>La exposición Carne, Hueso y Metal viaja a Casa Axis, hogar y estudio de Felipe Pantone, como punto de encuentro para artistas de diversas disciplinas. Un espacio donde convergen arte visual, diseño, música y tecnología en un formato íntimo y experimental.</p></div><div class="down">↓</div></section>
 <section class="section" id="metal"><div class="bg" style="background-image:url('assets/bg/p18.jpg')"></div><div class="shade"></div><h2 class="huge reveal">Fecha Lanzamiento.<br>Teasers en RRSS.<br>Single + Videoclip.<br>Visualizers. Prensa.<br>Plataformas digitales.</h2><div class="down">↓</div></section>
 <section class="section" id="feats"><div class="bg" style="background-image:url('assets/bg/p19.jpg')"></div><div class="shade"></div><h2 class="huge reveal">Este proyecto incluye la colaboración de:</h2><div class="down">↓</div></section>
 <section class="section" style="align-items:center"><div class="bg" style="background:#000"></div><div class="grid" id="peopleGrid"></div></section>
 <section class="section center" id="contacto"><div class="bg" style="background:#000"></div><div class="car-static" aria-label="Auto chocado"></div><div class="contact"><h3>CONTACTO</h3><p>facundo.alama@daleplay.la · pope@elpoint.ar</p></div></section>
 </main>
-<div class="modal" id="modal"><div class="modal-card" id="modalCard"><button class="modal-x" id="modalX">×</button><div class="modal-content"><h3 id="modalName"></h3><p id="modalText"></p></div></div></div>
+
+<div class="modal" id="modal">
+  <div class="modal-card" id="modalCard">
+    <button class="modal-x" id="modalX">×</button>
+    <div class="modal-header">
+      <h3 id="modalName"></h3>
+      <p class="role" id="modalRole"></p>
+      <p class="feat" id="modalFeat"></p>
+    </div>
+    <div class="modal-body">
+      <p id="modalIntro"></p>
+      <p id="modalText"></p>
+    </div>
+  </div>
+</div>
+
 <script>
-const heroImgs=['p01','p02','p03','p04','p05','p06'].map(p=>`assets/bg/${p}.jpg`);let hi=0;const heroBg=document.getElementById('heroBg');function hero(){heroBg.style.backgroundImage=`url('${heroImgs[hi%heroImgs.length]}')`;hi++}hero();setInterval(hero,3600);
-const menu=document.getElementById('menu');openMenu.onclick=()=>menu.classList.add('open');closeMenu.onclick=()=>menu.classList.remove('open');menu.querySelectorAll('a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.2});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const canvas=document.getElementById('crack'),ctx=canvas.getContext('2d');let glassLines=[];function makeGlass(){glassLines=[];for(let i=0;i<185;i++){let x=Math.random(),y=Math.random(),len=.035+Math.random()*.42,ang=(-.45+Math.random()*.9)+(Math.random()>.68?Math.PI/2:0);glassLines.push([x,y,len,ang,Math.random()])}}function resize(){canvas.width=innerWidth;canvas.height=innerHeight;makeGlass();drawGlass()}function drawGlass(){const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.lineCap='round';glassLines.forEach(([x,y,l,a,o])=>{ctx.globalAlpha=.12+o*.34;ctx.strokeStyle=o>.72?'rgba(255,255,255,.22)':'rgba(255,255,255,.13)';ctx.lineWidth=o>.82?1.05:.55;ctx.beginPath();ctx.moveTo(x*w,y*h);ctx.lineTo((x+Math.cos(a)*l)*w,(y+Math.sin(a)*l)*h);ctx.stroke();if(o>.86){ctx.globalAlpha=.08;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo((x+.003)*w,(y+.003)*h);ctx.lineTo((x+Math.cos(a)*l+.003)*w,(y+Math.sin(a)*l+.003)*h);ctx.stroke()}});ctx.globalAlpha=.18;ctx.strokeStyle='rgba(255,255,255,.23)';for(let c=0;c<5;c++){let cx=w*(.18+Math.random()*.68),cy=h*(.15+Math.random()*.7);for(let i=0;i<7;i++){let a=Math.random()*Math.PI*2,r=70+Math.random()*190;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*18,cy+Math.sin(a)*18);ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);ctx.stroke()}}ctx.globalAlpha=1}addEventListener('resize',resize);resize();
+// ── Hero crossfade (dos capas alternas) ─────────────────────────
+const heroImgs=['p01','p02','p03','p04','p05','p06'].map(p=>`assets/bg/${p}.jpg`);
+let hi=0;
+const heroBg=document.getElementById('heroBg');
+const heroBg2=document.getElementById('heroBg2');
+let heroCurrent=heroBg;
+heroBg.style.backgroundImage=`url('${heroImgs[0]}')`;
+function hero(){
+  hi=(hi+1)%heroImgs.length;
+  const next=heroCurrent===heroBg?heroBg2:heroBg;
+  next.style.backgroundImage=`url('${heroImgs[hi]}')`;
+  next.style.opacity='1';
+  heroCurrent.style.opacity='0';
+  heroCurrent=next;
+}
+setInterval(hero,3600);
+
+// ── Menu ────────────────────────────────────────────────────────
+const menu=document.getElementById('menu');
+openMenu.onclick=()=>menu.classList.add('open');
+closeMenu.onclick=()=>menu.classList.remove('open');
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
+
+// ── Reveal on scroll ────────────────────────────────────────────
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.2});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── Glass crack ─────────────────────────────────────────────────
+const canvas=document.getElementById('crack'),ctx=canvas.getContext('2d');
+let glassLines=[];
+function makeGlass(){glassLines=[];for(let i=0;i<185;i++){let x=Math.random(),y=Math.random(),len=.035+Math.random()*.42,ang=(-.45+Math.random()*.9)+(Math.random()>.68?Math.PI/2:0);glassLines.push([x,y,len,ang,Math.random()])}}
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;makeGlass();drawGlass()}
+function drawGlass(){const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.lineCap='round';glassLines.forEach(([x,y,l,a,o])=>{ctx.globalAlpha=.12+o*.34;ctx.strokeStyle=o>.72?'rgba(255,255,255,.22)':'rgba(255,255,255,.13)';ctx.lineWidth=o>.82?1.05:.55;ctx.beginPath();ctx.moveTo(x*w,y*h);ctx.lineTo((x+Math.cos(a)*l)*w,(y+Math.sin(a)*l)*h);ctx.stroke();if(o>.86){ctx.globalAlpha=.08;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo((x+.003)*w,(y+.003)*h);ctx.lineTo((x+Math.cos(a)*l+.003)*w,(y+Math.sin(a)*l+.003)*h);ctx.stroke()}});ctx.globalAlpha=.18;ctx.strokeStyle='rgba(255,255,255,.23)';for(let c=0;c<5;c++){let cx=w*(.18+Math.random()*.68),cy=h*(.15+Math.random()*.7);for(let i=0;i<7;i++){let a=Math.random()*Math.PI*2,r=70+Math.random()*190;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*18,cy+Math.sin(a)*18);ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);ctx.stroke()}}ctx.globalAlpha=1}
+addEventListener('resize',resize);resize();
+
+// ── Bio slideshow ───────────────────────────────────────────────
 const bioTexts=[
-'Yesan es una de las figuras más influyentes y creativas de la escena musical argentina de la última década, destacándose como artista multifacético, multiinstrumentista y productor musical.',
-'Como productor, ha sido una pieza fundamental en proyectos clave como la formación del trío Modo Diablo y discos icónicos de Duki e YSY A.',
-'Su trabajo lo ha llevado a colaborar con artistas internacionales de renombre como Bizarrap, Quevedo, Peso Pluma, Nicki Nicole, Trueno, Milo J y De La Ghetto.',
-'Entre sus presentaciones más destacadas se encuentran Vélez, River Plate y el Santiago Bernabéu. También realizó música original para el documental Rockstar.',
-'Paralelamente a su trabajo con otros artistas, Yesan desarrolla su carrera solista con singles como La Lune XVIII, Cuero 皮膚, Las horas 時間 y Content Explicit.'
-];const bioWrap=document.querySelector('.bio-sticky'),bioLayers=[...document.querySelectorAll('.bio-layer')],bioText=document.querySelector('.bio-text');let bioActive=0;function updateBio(){if(!bioWrap)return;const r=bioWrap.getBoundingClientRect();const total=r.height-innerHeight;const p=Math.min(1,Math.max(0,-r.top/total));const idx=Math.min(bioTexts.length-1,Math.floor(p*bioTexts.length));if(idx!==bioActive){bioLayers.forEach((l,i)=>{l.classList.toggle('active',i===idx);l.classList.toggle('exit',i<idx)});bioText.classList.remove('active');setTimeout(()=>{bioText.textContent=bioTexts[idx];bioText.classList.add('active')},170);bioActive=idx}}addEventListener('scroll',updateBio,{passive:true});updateBio();
-const people=[['ANDY VILANOVA','p21','Reconocido por su participación en Carajo y A.N.I.M.A.L., Andy construyó una carrera marcada por potencia escénica, virtuosismo y energía en vivo. Uno de los bateristas más explosivos y respetados de la escena argentina.'],['BHAVI','p22','Pionero de la escena urbana argentina y protagonista de la primera BZRP Music Sessions #1. Artista original e influyente que cruza trap, rap, electrónica y pop psicodélico.'],['JUICY BAE','p23','Cantante y rapera sevillana. Su propuesta cruza trap, R&B, afrobeat, electrónica y flamenco con una sensibilidad melódica oscura, íntima y experimental.'],['DANO','p24','Dirección creativa y producción musical. Referente del hip hop en español, su participación aporta identidad, criterio y calidad artística.'],['FEDE BARRETO','p25','Productor musical, compositor e ingeniero de sonido argentino vinculado a la nueva escena del pop y rock alternativo argentino.'],['LUCAS VIGNALE','p26','Cineasta y director argentino con una estética cinematográfica y experimental dentro de la música urbana latinoamericana.'],['DANIEL REINA','p27','Fundador de Admire Audio, especializado en sistemas de alta fidelidad, escucha crítica y cultura sonora analógica.'],['FELIPE PANTONE','p28','Artista argentino-español radicado en Valencia. Fusiona graffiti, arte cinético, tipografía digital, velocidad, luz y errores visuales de la era digital.'],['CASA AXIS','p29','Casa estudio de Felipe Pantone. En su discoteca, con instalación de sonido analógica de Daniel Reina, se realiza un camp crucial para Arañado.'],['BRIAN TAYLOR','p30','Músico, ingeniero de mezcla y productor argentino. Figura técnica y creativa de la música argentina contemporánea.'],['ANDRÉS MAYO','p32','Productor musical, ingeniero de mastering y referente técnico del audio argentino, impulsor del audio inmersivo y mastering en Dolby Atmos.'],['GONZALO SOLIMANO','p31','Artista, DJ, productor cultural y curador argentino, fundador de Artlab y director de MUTEK Argentina.']];
-const grid=document.getElementById('peopleGrid'),modal=document.getElementById('modal'),modalCard=document.getElementById('modalCard');people.forEach(p=>{let b=document.createElement('button');b.className='person';b.style.backgroundImage=`url('assets/bg/${p[1]}.jpg')`;b.innerHTML=`<span>${p[0]}</span>`;b.onclick=()=>{modal.classList.add('open');modalCard.style.backgroundImage=`url('assets/bg/${p[1]}.jpg')`;modalName.textContent=p[0];modalText.textContent=p[2]};grid.appendChild(b)});modalX.onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
+  'Yesan es una de las figuras más influyentes y creativas de la escena musical argentina de la última década, destacándose como artista multifacético, multiinstrumentista y productor musical.',
+  'Como productor, ha sido una pieza fundamental en proyectos clave como la formación del trío "Modo Diablo" (DUKI, YSY A, NEO PISTEA), y discos icónicos de Duki ("AMERI", "Antes de Ameri", "Desde El Fin del Mundo", "5202") y Ysy A ("Hecho a mano", "Antezana 247").',
+  'Su trabajo lo ha llevado a colaborar con artistas internacionales de renombre como Bizarrap, Quevedo, Peso Pluma, Nicki Nicole, Eladio Carrion, Trueno, Mike Towers, Milo J, y De la Ghetto, entre otros.',
+  'Entre sus presentaciones más destacadas se encuentran cuatro shows en el estadio Vélez Sarsfield, dos en River Plate y el histórico evento en el estadio Santiago Bernabéu. Además, fue el encargado de la música original para el documental de DUKI "Rockstar", estrenado en la plataforma Netflix.',
+  'Paralelamente a su trabajo con otros artistas, Yesan desarrolla su carrera solista, habiendo lanzado cinco singles hasta la fecha, incluyendo "La Lune XVIII", "Cuero 皮膚", "Las horas 時間" y "Content Explicit" (en colaboración con COSMIC KID).'
+];
+const bioLayers=[...document.querySelectorAll('.bio-layer')];
+const bioText=document.querySelector('.bio-text');
+const bioDots=document.getElementById('bioDots');
+let bioActive=0;
+let bioTimer=null;
+
+bioTexts.forEach((_,i)=>{
+  const d=document.createElement('div');
+  d.className='bio-dot'+(i===0?' active':'');
+  d.onclick=()=>jumpBio(i);
+  bioDots.appendChild(d);
+});
+
+function updateBio(){
+  bioLayers.forEach((l,i)=>l.classList.toggle('active',i===bioActive));
+  bioDots.querySelectorAll('.bio-dot').forEach((d,i)=>d.classList.toggle('active',i===bioActive));
+  bioText.classList.remove('active');
+  setTimeout(()=>{bioText.textContent=bioTexts[bioActive];bioText.classList.add('active');},500);
+}
+
+function jumpBio(idx){
+  if(idx===bioActive)return;
+  bioActive=idx;
+  updateBio();
+  clearInterval(bioTimer);
+  bioTimer=setInterval(advanceBio,5000);
+}
+
+function advanceBio(){bioActive=(bioActive+1)%bioTexts.length;updateBio();}
+bioTimer=setInterval(advanceBio,5000);
+
+// ── Video: lazy-load YouTube con autoplay al entrar en viewport ─
+const videoIframe=document.getElementById('videoIframe');
+let videoLoaded=false;
+const videoObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!videoLoaded){
+      videoLoaded=true;
+      videoIframe.src='https://www.youtube.com/embed/rOuzbuMfFlk?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1';
+      videoObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.05});
+videoObs.observe(document.getElementById('teaser'));
+
+// ── Untitled embed: lazy-load después del reveal ─────────────────
+const untitledIframe=document.getElementById('untitledIframe');
+let untitledLoaded=false;
+const untitledObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!untitledLoaded){
+      untitledLoaded=true;
+      setTimeout(()=>{untitledIframe.src='https://untitled.stream/embed/bXesLi1tcy4J';},700);
+      untitledObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+untitledObs.observe(document.getElementById('album'));
+
+// ── Car 3D tilt on mouse move ────────────────────────────────────
+const carEl=document.querySelector('.car-static');
+const carSection=document.getElementById('contacto');
+if(carEl&&carSection){
+  carSection.addEventListener('mousemove',e=>{
+    const r=carSection.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)/(r.width/2);
+    const y=(e.clientY-r.top-r.height/2)/(r.height/2);
+    carEl.style.setProperty('--rx',`${x*18}deg`);
+    carEl.style.setProperty('--ry',`${-y*12}deg`);
+  });
+  carSection.addEventListener('mouseleave',()=>{
+    carEl.style.setProperty('--rx','0deg');
+    carEl.style.setProperty('--ry','0deg');
+  });
+}
+
+// ── People grid ─────────────────────────────────────────────────
+const people=[
+  {n:'ANDY VILANOVA',img:'p21',role:'Baterista',feat:'ft. en Pies de plomo',
+   intro:'Uno de los bateristas más explosivos, versátiles y respetados de la escena argentina. Su estilo combina técnica extrema, musicalidad y una intensidad física poco común, convirtiéndolo en una referencia indiscutida de la batería pesada en Latinoamérica.',
+   body:'Reconocido por su participación en Carajo y A.N.I.M.A.L. — dos de las bandas más influyentes del rock pesado en español —, Andy construyó una carrera marcada por la potencia escénica, el virtuosismo y la energía en vivo. En los últimos años trasladó esa impronta al universo urbano trabajando junto a Duki en shows masivos y producciones de gran escala, aportando una fuerza rockera y una contundencia en vivo que ayudaron a redefinir el sonido de las giras urbanas en Argentina.'},
+  {n:'BHAVI',img:'p22',role:'Cantante',feat:'ft. en Luciérnaga',
+   intro:'Uno de los artistas más originales e influyentes de la nueva generación del trap argentino. Nacido en Bélgica y criado entre Europa, Uruguay y Argentina, construyó una identidad musical única que mezcla trap, rap, electrónica y pop psicodélico.',
+   body:'Fue uno de los pioneros de la escena urbana argentina y el protagonista de la primera BZRP Music Sessions #1, marcando un momento clave en la expansión global del trap argentino. A lo largo de su carrera colaboró con artistas como Duki, YSY A, Bizarrap, Trueno, Khea, Cazzu, Neo Pistea, Tiago PZK y Milo J, entre muchos otros.'},
+  {n:'JUICY BAE',img:'p23',role:'Cantante y Rapera',feat:'ft. en Fiera',
+   intro:'Cantante y rapera sevillana que se convirtió en una de las figuras más singulares de la música urbana española.',
+   body:'Su propuesta cruza trap, R&B, afrobeat, electrónica y flamenco, combinando una sensibilidad melódica muy personal con una estética oscura, íntima y experimental. A lo largo de su carrera colaboró con artistas como Nicki Nicole, La Joaqui, La Zowi, Villano Antillano, Polimá Westcoast, entre otros.'},
+  {n:'DANO',img:'p24',role:'Dirección Creativa · Producción Musical',feat:'',
+   intro:'Uno de los nombres más respetados del hip hop en español, su participación en el proyecto es sinónimo de identidad, criterio y garantía de calidad artística.',
+   body:'Como rapero ha colaborado con artistas como Duki, Rels B, Dante Spinetta y Cruz Cafuné, entre otros. Como productor musical, destaca su trabajo en "Disciplina" de Lali y en "Una Niña Inútil" de Cazzu. En el plano audiovisual, participó en la dirección y desarrollo visual de piezas como "Llorando en la Limo" de C. Tangana, "No me llores" y "Goteo" de Duki, ayudando a construir una estética que marcó una era dentro de la música en español.'},
+  {n:'FEDE BARRETO',img:'p25',role:'Producción Musical',feat:'',
+   intro:'Don Barreto — Federico Barreto — es un productor musical, compositor e ingeniero de sonido argentino radicado en Buenos Aires, vinculado a la nueva escena del pop y rock alternativo argentino.',
+   body:'Su trabajo mezcla producción digital contemporánea, texturas electrónicas y sensibilidad rockera, participando en proyectos de artistas como Lali, Dillom y BB Asul. En los últimos años se consolidó como uno de los productores emergentes más interesantes de la escena argentina por su capacidad de combinar sonido mainstream con una estética más experimental y oscura.'},
+  {n:'LUCAS VIGNALE',img:'p26',role:'Realización Audiovisual',feat:'',
+   intro:'Lucas Vignale es un cineasta y director argentino reconocido por desarrollar una estética cinematográfica y experimental dentro de la música urbana latinoamericana.',
+   body:'Se ha convertido en una de las miradas visuales más interesantes de la nueva generación trabajando con artistas como Bizarrap, Duki, Nicki Nicole, Milo J, J Balvin, Trueno, Nathy Peluso y Wos. Escribió y dirigió piezas para el canal de YouTube de Gaspi que superan los 17 millones de visualizaciones. Junto a Lorenzo "Toto" Ferro estrenaron "El Tren Fluvial" en la Berlinale 76, y "La Pasión" fue premiado en el BAFICI 25\' dentro de la Competencia Internacional.'},
+  {n:'DANIEL REINA',img:'p27',role:'Mastering Analógico',feat:'',
+   intro:'Daniel Reina es el fundador de Admire Audio, un proyecto radicado en Valencia especializado en sistemas de alta fidelidad, escucha crítica y cultura sonora analógica vinculada al vinilo y al audio de precisión.',
+   body:'Su trabajo se centra en la curaduría de experiencias de escucha de alta gama, integrando tecnología, diseño acústico y una mirada profundamente audiófila sobre la reproducción musical. Desde Admire Audio desarrolló colaboraciones con artistas, espacios culturales y proyectos inmersivos donde el sonido se aborda como experiencia física, estética y emocional, más allá del consumo musical convencional.'},
+  {n:'FELIPE PANTONE',img:'p28',role:'Artista Visual',feat:'',
+   intro:'Felipe Pantone es un artista argentino-español nacido en Buenos Aires y radicado en Valencia, reconocido internacionalmente por fusionar graffiti, arte cinético, tipografía digital y estética inspirada en la velocidad, la luz y los errores visuales de la era digital.',
+   body:'Su obra trabaja con degradados fluorescentes, geometrías ópticas, efectos moiré y referencias al movimiento, combinando técnicas analógicas y tecnología contemporánea en murales, esculturas e instalaciones. Expuso en galerías y museos de Europa, Asia y Estados Unidos, y colaboró con marcas como Nike, Porsche, Zenith o Mercedes-Benz, convirtiéndose en una de las figuras más influyentes del arte urbano contemporáneo.'},
+  {n:'CASA AXIS',img:'p29',role:'Sede y Estudio',feat:'',
+   intro:'La casa estudio de Felipe Pantone. En la discoteca de Casa Axis, espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina (Admire Audio), se realiza un camp crucial para Arañado.',
+   body:'En la discoteca de Casa Axis —espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina— se realiza un camp crucial para Arañado. Durante una semana, Yesan, Barreto y Dano se internaron a perfeccionar el disco. Felipe Pantone introdujo a Dani Reina.'},
+  {n:'BRIAN TAYLOR',img:'p30',role:'Ingeniero de mezcla · Productor Musical',feat:'',
+   intro:'Brian Taylor es un músico, ingeniero de mezcla y productor argentino reconocido por su versatilidad y su trabajo en algunos de los proyectos más importantes de la música argentina contemporánea.',
+   body:'Ganador del Premio Gardel de Oro por su trabajo junto a Trueno y Marilina Bertoldi, se consolidó como una de las figuras técnicas y creativas más destacadas de la nueva generación. Destaca su trabajo en "Ameri" de Duki, "Atrevido" y "Bien o Mal" de Trueno, "Prender un fuego" de Marilina Bertoldi, entre otros.'},
+  {n:'ANDRÉS MAYO',img:'p32',role:'Ingeniero de Mastering',feat:'',
+   intro:'Andrés Mayo es un productor musical, ingeniero de mastering y referente técnico del audio argentino, reconocido internacionalmente por su trabajo en música, restauración sonora y audio de alta definición.',
+   body:'Trabajó con artistas como Gustavo Cerati, Charly García, Luis Alberto Spinetta, Pedro Aznar y Soda Stereo, además de participar en proyectos para cine, plataformas digitales y reediciones históricas latinoamericanas. Es uno de los principales impulsores del audio inmersivo y el mastering en Dolby Atmos en habla hispana, combinando ingeniería de precisión, preservación patrimonial y experimentación tecnológica aplicada al sonido.'},
+  {n:'GONZALO SOLIMANO',img:'p31',role:'Curador y Director',feat:'',
+   intro:'Gonzalo Solimano es un artista, DJ, productor cultural y curador argentino, reconocido por ser el fundador de Artlab y director de MUTEK Argentina, dos de los proyectos más influyentes del cruce entre arte, música electrónica y tecnología en Buenos Aires.',
+   body:'Su trabajo combina sonido, arte digital, inteligencia artificial, visuales inmersivas y experiencias interdisciplinarias, construyendo una estética vinculada a la sensibilidad contemporánea y la cultura electrónica experimental. Desde Artlab impulsó residencias, exposiciones, ciclos audiovisuales y colaboraciones internacionales que posicionaron a Buenos Aires como uno de los polos más activos de arte digital y creatividad tecnológica en Latinoamérica.'},
+  {n:'ELEFANTE DIAMANTE',img:'p33',role:'Realización Audiovisual',feat:'',
+   intro:'Elefante Diamante es el proyecto audiovisual y artístico liderado por Iván Pierotti, director y realizador argentino radicado en Buenos Aires, reconocido por su trabajo en videoclips, visuales en vivo y piezas experimentales ligadas a la música y la cultura urbana.',
+   body:'Su estética combina fotografía cinematográfica, narrativa emocional y una fuerte sensibilidad musical, trabajando con artistas como Duki, YSY A, Conociendo Rusia, Neo Pistea, Hernán Cattáneo e Illya Kuryaki. A través de Elefante Diamante desarrolló un lenguaje visual muy asociado al videoclip contemporáneo argentino, mezclando intimidad documental, color sofisticado y una mirada artesanal sobre la imagen y la puesta en escena.'}
+];
+const grid=document.getElementById('peopleGrid'),modal=document.getElementById('modal'),modalCard=document.getElementById('modalCard');
+people.forEach(p=>{
+  let b=document.createElement('button');
+  b.className='person';
+  b.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;
+  b.innerHTML=`<span>${p.n}</span>`;
+  b.onclick=()=>{
+    modal.classList.add('open');
+    document.body.style.overflow='hidden';
+    modalCard.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;
+    document.getElementById('modalName').textContent=p.n;
+    document.getElementById('modalRole').textContent=p.role;
+    document.getElementById('modalFeat').textContent=p.feat;
+    document.getElementById('modalIntro').textContent=p.intro;
+    document.getElementById('modalText').textContent=p.body;
+  };
+  grid.appendChild(b);
+});
+const closeModal=()=>{modal.classList.remove('open');document.body.style.overflow=''};
+document.getElementById('modalX').onclick=closeModal;
+modal.onclick=e=>{if(e.target===modal)closeModal()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 </script>
 </body>
 </html>
