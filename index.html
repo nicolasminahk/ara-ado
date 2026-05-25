@@ -132,11 +132,9 @@
     /* video/embed keep padding 0 on mobile */
     .section.video,.section.embed{padding:0}
     .video .frame,.embed .frame{width:100vw}
-    /* contacto mobile: video 16:9 arriba, texto abajo apilado */
-    #contacto{display:flex;flex-direction:column;min-height:auto;padding:0}
-    #contacto .contact-vid{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;flex-shrink:0}
-    #contacto .shade{display:none}
-    #contacto .contact{position:relative;left:auto;bottom:auto;translate:none;padding:28px 22px 44px;width:100%;max-width:100%}
+    /* contacto mobile: full frame igual que desktop */
+    #contacto{min-height:100svh}
+    .contact-vid{object-fit:cover}
   }
 </style>
 </head>
@@ -338,9 +336,13 @@ const untitledObs=new IntersectionObserver(entries=>{
 },{threshold:0.1});
 untitledObs.observe(document.getElementById('album'));
 
-// ── Video contacto: reproducir una vez al entrar, congelar en último frame ─
+// ── Video contacto: reproducir una vez, congelar en último frame ────────
 const contactVid=document.querySelector('.contact-vid');
 if(contactVid){
+  // Al terminar: ir un tick antes del final para que el browser no regrese al frame 0
+  contactVid.addEventListener('ended',()=>{
+    contactVid.currentTime=contactVid.duration-0.04;
+  });
   let contactPlayed=false;
   const contactObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
@@ -348,7 +350,7 @@ if(contactVid){
         contactPlayed=true;
         contactVid.load();
         contactVid.play().catch(()=>{});
-        contactObs.unobserve(e.target); // nunca vuelve a reproducir
+        contactObs.unobserve(e.target);
       }
     });
   },{threshold:0.05});
