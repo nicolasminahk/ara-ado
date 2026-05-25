@@ -13,9 +13,9 @@
   .brand{font-weight:900;letter-spacing:-.03em;font-size:clamp(24px,3vw,36px);line-height:1}
   .mark{width:48px;height:48px;display:block;object-fit:contain;opacity:.98}
   .hamb{width:36px;height:28px;display:grid;gap:6px}.hamb span{display:block;height:5px;background:#fff;border-radius:1px}
-  .menu{position:fixed;z-index:70;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(16px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3vh;transform:translateY(-100%);transition:.8s var(--ease)}
+  .menu{position:fixed;z-index:70;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(16px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2vh;overflow:hidden;transform:translateY(-100%);transition:.8s var(--ease)}
   .menu.open{transform:none}
-  .menu a{display:block;font-weight:900;text-decoration:none;font-size:clamp(42px,9vw,110px);letter-spacing:-.05em;line-height:1;text-transform:uppercase;text-align:center;transition:color .3s}
+  .menu a{display:block;font-weight:900;text-decoration:none;font-size:min(clamp(36px,8vw,100px),11vh);letter-spacing:-.01em;line-height:1;text-transform:uppercase;text-align:center;transition:color .3s}
   .menu a:hover{color:rgba(255,255,255,.7)}
   .close{position:absolute;top:28px;right:34px;font-size:48px}
 
@@ -30,7 +30,7 @@
   .down{position:absolute;z-index:5;bottom:25px;left:50%;translate:-50% 0;font-size:32px;animation:float 1.8s infinite}
   .kicker{font-weight:900;font-size:clamp(20px,3vw,48px);line-height:1.1;letter-spacing:-.05em;text-transform:uppercase}
   .copy{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,6vw,100px);max-width:1180px;width:100%}
-  .copy p{font-size:clamp(17px,1.6vw,26px);line-height:1.4;margin:0;color:var(--muted)}
+  .copy p{font-size:clamp(17px,1.6vw,26px);line-height:1.58;margin:0;color:var(--muted)}
   .copy strong,.copy b{color:#fff}
   .huge{position:relative;z-index:2;font-size:clamp(64px,12vw,170px);font-weight:900;letter-spacing:-.08em;line-height:.95;max-width:1100px;text-transform:none}
   .center{justify-items:center;text-align:center}
@@ -129,6 +129,9 @@
     .links{width:100%;justify-content:space-between;gap:12px}
     .links a{font-size:24px}
     .person{min-height:26svh}
+    /* video/embed keep padding 0 on mobile */
+    .section.video,.section.embed{padding:0}
+    .video .frame,.embed .frame{width:100vw}
   }
 </style>
 </head>
@@ -340,7 +343,7 @@ if(carEl&&carSection){
 
 // ── People grid ─────────────────────────────────────────────────
 const people=[
-  {n:'ANDY VILANOVA',img:'p21',role:'Baterista',feat:'ft. en Pies de plomo',
+  {n:'ANDY VILANOVA',img:'p21',pos:'top center',role:'Baterista',feat:'ft. en Pies de plomo',
    intro:'Uno de los bateristas más explosivos, versátiles y respetados de la escena argentina. Su estilo combina técnica extrema, musicalidad y una intensidad física poco común, convirtiéndolo en una referencia indiscutida de la batería pesada en Latinoamérica.',
    body:'Reconocido por su participación en Carajo y A.N.I.M.A.L. — dos de las bandas más influyentes del rock pesado en español —, Andy construyó una carrera marcada por la potencia escénica, el virtuosismo y la energía en vivo. En los últimos años trasladó esa impronta al universo urbano trabajando junto a Duki en shows masivos y producciones de gran escala, aportando una fuerza rockera y una contundencia en vivo que ayudaron a redefinir el sonido de las giras urbanas en Argentina.'},
   {n:'BHAVI',img:'p22',role:'Cantante',feat:'ft. en Luciérnaga',
@@ -367,31 +370,28 @@ const people=[
   {n:'CASA AXIS',img:'p29',role:'Sede y Estudio',feat:'',
    intro:'La casa estudio de Felipe Pantone. En la discoteca de Casa Axis, espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina (Admire Audio), se realiza un camp crucial para Arañado.',
    body:'En la discoteca de Casa Axis —espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina— se realiza un camp crucial para Arañado. Durante una semana, Yesan, Barreto y Dano se internaron a perfeccionar el disco. Felipe Pantone introdujo a Dani Reina.'},
-  {n:'BRIAN TAYLOR',img:'p30',role:'Ingeniero de mezcla · Productor Musical',feat:'',
+  {n:'BRIAN TAYLOR',img:'p30',pos:'top center',role:'Ingeniero de mezcla · Productor Musical',feat:'',
    intro:'Brian Taylor es un músico, ingeniero de mezcla y productor argentino reconocido por su versatilidad y su trabajo en algunos de los proyectos más importantes de la música argentina contemporánea.',
    body:'Ganador del Premio Gardel de Oro por su trabajo junto a Trueno y Marilina Bertoldi, se consolidó como una de las figuras técnicas y creativas más destacadas de la nueva generación. Destaca su trabajo en "Ameri" de Duki, "Atrevido" y "Bien o Mal" de Trueno, "Prender un fuego" de Marilina Bertoldi, entre otros.'},
   {n:'ANDRÉS MAYO',img:'p32',role:'Ingeniero de Mastering',feat:'',
    intro:'Andrés Mayo es un productor musical, ingeniero de mastering y referente técnico del audio argentino, reconocido internacionalmente por su trabajo en música, restauración sonora y audio de alta definición.',
    body:'Trabajó con artistas como Gustavo Cerati, Charly García, Luis Alberto Spinetta, Pedro Aznar y Soda Stereo, además de participar en proyectos para cine, plataformas digitales y reediciones históricas latinoamericanas. Es uno de los principales impulsores del audio inmersivo y el mastering en Dolby Atmos en habla hispana, combinando ingeniería de precisión, preservación patrimonial y experimentación tecnológica aplicada al sonido.'},
-  {n:'GONZALO SOLIMANO',img:'p31',role:'Curador y Director',feat:'',
+  {n:'GONZALO SOLIMANO',img:'p31',pos:'top center',role:'Curador y Director',feat:'',
    intro:'Gonzalo Solimano es un artista, DJ, productor cultural y curador argentino, reconocido por ser el fundador de Artlab y director de MUTEK Argentina, dos de los proyectos más influyentes del cruce entre arte, música electrónica y tecnología en Buenos Aires.',
-   body:'Su trabajo combina sonido, arte digital, inteligencia artificial, visuales inmersivas y experiencias interdisciplinarias, construyendo una estética vinculada a la sensibilidad contemporánea y la cultura electrónica experimental. Desde Artlab impulsó residencias, exposiciones, ciclos audiovisuales y colaboraciones internacionales que posicionaron a Buenos Aires como uno de los polos más activos de arte digital y creatividad tecnológica en Latinoamérica.'},
-  {n:'ELEFANTE DIAMANTE',img:'p33',role:'Realización Audiovisual',feat:'',
-   intro:'Elefante Diamante es el proyecto audiovisual y artístico liderado por Iván Pierotti, director y realizador argentino radicado en Buenos Aires, reconocido por su trabajo en videoclips, visuales en vivo y piezas experimentales ligadas a la música y la cultura urbana.',
-   body:'Su estética combina fotografía cinematográfica, narrativa emocional y una fuerte sensibilidad musical, trabajando con artistas como Duki, YSY A, Conociendo Rusia, Neo Pistea, Hernán Cattáneo e Illya Kuryaki. A través de Elefante Diamante desarrolló un lenguaje visual muy asociado al videoclip contemporáneo argentino, mezclando intimidad documental, color sofisticado y una mirada artesanal sobre la imagen y la puesta en escena.'}
+   body:'Su trabajo combina sonido, arte digital, inteligencia artificial, visuales inmersivas y experiencias interdisciplinarias, construyendo una estética vinculada a la sensibilidad contemporánea y la cultura electrónica experimental. Desde Artlab impulsó residencias, exposiciones, ciclos audiovisuales y colaboraciones internacionales que posicionaron a Buenos Aires como uno de los polos más activos de arte digital y creatividad tecnológica en Latinoamérica.'}
 ];
 const grid=document.getElementById('peopleGrid'),modal=document.getElementById('modal'),modalCard=document.getElementById('modalCard');
 people.forEach(p=>{
   let b=document.createElement('button');
   b.className='person';
-  if(p.bg){b.style.cssText=`background:${p.bg}`;}
-  else{b.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;}
+  if(p.bg){b.style.cssText=`background:${p.bg};background-size:cover;background-position:${p.pos||'center'}`;}
+  else{b.style.backgroundImage=`url('assets/bg/${p.img}.jpg')`;b.style.backgroundPosition=p.pos||'center';}
   b.innerHTML=`<span>${p.n}</span>`;
   b.onclick=()=>{
     modal.classList.add('open');
     document.body.style.overflow='hidden';
-    if(p.bg){modalCard.style.background=p.bg;modalCard.style.backgroundSize='';}
-    else{modalCard.style.background=`#000 url('assets/bg/${p.img}.jpg') center/cover`;}
+    if(p.bg){modalCard.style.background=p.bg;modalCard.style.backgroundSize='cover';modalCard.style.backgroundPosition=p.pos||'center';}
+    else{modalCard.style.background=`#000 url('assets/bg/${p.img}.jpg') ${p.pos||'center'}/cover`;}
     document.getElementById('modalName').textContent=p.n;
     document.getElementById('modalRole').textContent=p.role;
     document.getElementById('modalFeat').textContent=p.feat;
