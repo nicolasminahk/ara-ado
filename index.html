@@ -207,7 +207,7 @@
 <section class="section" id="feats"><div class="bg" style="background-image:url('assets/bg/p19.jpg')"></div><div class="shade"></div><h2 class="huge reveal">Este proyecto incluye la colaboración de:</h2></section>
 <section class="section" style="align-items:center"><div class="bg" style="background:#000"></div><div class="grid" id="peopleGrid"></div></section>
 <section class="section center" id="contacto" style="background:#000;padding:0">
-  <video class="contact-vid" muted playsinline preload="none">
+  <video class="contact-vid" muted playsinline preload="metadata">
     <source src="assets/auto-byn.mp4" type="video/mp4">
   </video>
   <div class="shade" style="z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.18) 40%,rgba(0,0,0,.62))"></div>
@@ -348,7 +348,6 @@ if(contactVid){
     entries.forEach(e=>{
       if(e.isIntersecting&&!contactPlayed){
         contactPlayed=true;
-        contactVid.load();
         contactVid.play().catch(()=>{});
         contactObs.unobserve(e.target);
       }
