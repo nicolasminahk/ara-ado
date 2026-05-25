@@ -235,16 +235,33 @@
 
 <script>
 // ── Hero crossfade (dos capas alternas) ─────────────────────────
-const heroImgs=['p01','p02','p03','p04','p05','p06'].map(p=>`assets/bg/${p}.jpg`);
+const heroSlides=[
+  {img:'p01',mpos:'13% center'},  // niño al volante — sujeto en ~25% desde la izquierda
+  {img:'p02',mpos:'center'},
+  {img:'p03',mpos:'center'},
+  {img:'p04',mpos:'27% center'},  // personas al barranco — sujetos en ~35% desde la izquierda
+  {img:'p05',mpos:'22% center'},  // auto en árbol — auto en ~30% desde la izquierda
+  {img:'p06',mpos:'center'},
+];
+const heroImgs=heroSlides.map(s=>`assets/bg/${s.img}.jpg`);
 let hi=0;
 const heroBg=document.getElementById('heroBg');
 const heroBg2=document.getElementById('heroBg2');
 let heroCurrent=heroBg;
-heroBg.style.backgroundImage=`url('${heroImgs[0]}')`;
+const isMobile=()=>window.innerWidth<=800;
+function applyHero(el,i){
+  el.style.backgroundImage=`url('${heroImgs[i]}')`;
+  el.style.backgroundPosition=isMobile()?heroSlides[i].mpos:'center';
+}
+applyHero(heroBg,0);
+// Re-apply positions on resize (portrait↔landscape)
+window.addEventListener('resize',()=>{
+  applyHero(heroCurrent,hi);
+});
 function hero(){
-  hi=(hi+1)%heroImgs.length;
+  hi=(hi+1)%heroSlides.length;
   const next=heroCurrent===heroBg?heroBg2:heroBg;
-  next.style.backgroundImage=`url('${heroImgs[hi]}')`;
+  applyHero(next,hi);
   next.style.opacity='1';
   heroCurrent.style.opacity='0';
   heroCurrent=next;
