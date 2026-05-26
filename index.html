@@ -48,7 +48,7 @@
   .tracks{display:grid;align-content:center;gap:20px}
 
   /* Grid & Person */
-  .grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;min-height:78svh;margin-top:60px}
+  .grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;min-height:78svh}
   .person{position:relative;min-height:35svh;background:#111 center/cover;display:flex;align-items:end;padding:18px;overflow:hidden;transition:transform .4s var(--ease)}
   .person:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72));transition:background .6s var(--ease)}
   .person:hover:before{background:rgba(0,0,0,.15)}
@@ -146,7 +146,7 @@
 </head>
 <body>
 <nav class="nav"><button class="hamb" id="openMenu"><span></span><span></span><span></span></button><div class="brand">ARAÑADO</div><img class="mark" src="assets/logo_nav.png" alt="Arañado logo"></nav>
-<div class="menu" id="menu"><button class="close" id="closeMenu">×</button><a href="#home">Home</a><a href="#bio">Bio</a><a href="#album">Disco</a><a href="#carne">Carne / Hueso / Metal</a><a href="#feats">Feats</a><a href="#contacto">Contacto</a></div>
+<div class="menu" id="menu"><button class="close" id="closeMenu">×</button><a href="#home">Home</a><a href="#bio">Bio</a><a href="#album">Disco</a><a href="#carne">Carne / Hueso / Metal</a><a href="#feats">Equipo</a><a href="#contacto">Contacto</a></div>
 <main>
 
 <!-- HERO: dos capas .bg para crossfade suave -->
@@ -190,7 +190,7 @@
   </div>
 </section>
 
-<section class="section center"><div class="bg" style="background-image:url('assets/bg/p13.jpg')"></div><div class="shade"></div><div><h2 class="huge reveal">ARAÑADO</h2><div class="links reveal"><a href="#carne">Carne</a><a href="#hueso">Hueso</a><a href="#metal">Metal</a></div></div><div class="down">↓</div></section>
+<section class="section center"><div class="bg" style="background-image:url('assets/bg/p13.jpg')"></div><div class="shade"></div><div><h2 class="huge reveal">ARAÑADO</h2><div class="links reveal"><a href="#carne">Carne</a><a href="#hueso">Hueso</a></div></div><div class="down">↓</div></section>
 
 <!-- DISCO: embed Untitled para pre-escucha -->
 <section class="section embed" id="album">
@@ -207,12 +207,20 @@
   </div>
 </section>
 
+<!-- COLABORADORES: grid con título integrado -->
+<section class="section" id="feats" style="padding:0;align-items:start;min-height:auto">
+  <div class="bg" style="background:#000"></div>
+  <div style="position:relative;z-index:3;width:100%;padding:clamp(96px,12vh,140px) clamp(28px,6vw,92px) clamp(28px,4vh,44px)">
+    <h2 class="reveal" style="font-size:clamp(15px,1.8vw,26px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;margin:0;color:rgba(255,255,255,.6);line-height:1.1">Este proyecto incluye la colaboración de:</h2>
+  </div>
+  <div class="grid" id="peopleGrid"></div>
+</section>
+<!-- ART LAB -->
 <section class="section" id="carne"><div class="bg" style="background-image:url('assets/bg/p15.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Exposición Art Lab:<br>Lanzamiento / Pre Escucha.</h2><p>Mezclado y masterizado en <b>Dolby Atmos</b> by <b>Andrés Mayo</b> — nominado al Grammy 2026 por "Best Immersive Album", ganador de 2 Latin Grammy y 7 Premios Gardel. Ex presidente mundial de la Audio Engineering Society.</p><p style="margin-top:10px">Nombre de la Exposición: <b>"CARNE, HUESO Y METAL".</b></p></div><p>Propuesta de experiencia inmersiva en colaboración con <b>ArtLab</b> como espacio cultural HiFi. Artlab es un destacado centro cultural y laboratorio creativo en Buenos Aires que une arte digital, tecnología, música y nuevas expresiones culturales.</p></div><div class="down">↓</div></section>
-<section class="section"><div class="bg" style="background-image:url('assets/bg/p16.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Show Niceto<br>Buenos Aires, Argentina.</h2><p>El show en Niceto es mucho más que un concierto: es el ritual de clausura de un profundo proceso artístico, el punto culminante de un viaje, y a la vez el vibrante pistoletazo de salida hacia la nueva etapa de <b>Yesan.</b></p><p style="margin-top:10px"><b>El 11/12/24 marcó el inicio, el día del accidente que dio vida a Arañado.</b> Dos años después, el <b>11/12/26</b>, lo celebramos tocando el álbum completo, <b>una resurrección en VIVO.</b></p><p style="margin-top:8px">Esta será la primera presentación en vivo de muchas, un show repleto de sorpresas, artistas invitados y referentes de la industria.</p></div><p>Inaugurado en 1998 en Palermo, <b>Niceto Club</b> es un ícono de la música en vivo y la noche de Buenos Aires. Con más de 25 años de trayectoria, el recinto es reconocido por su eclecticismo, albergando desde bandas emergentes hasta artistas internacionales de renombre.<br><br>Artistas que pasaron por los escenarios de Niceto: <i>Tame Impala, Macy Gray, Oliver Tree, Babasónicos, Él Mató a un Policía Motorizado, Juana Molina, Miranda!, Ysy A, Milo J</i>, y muchos más.</p></div></section>
+<!-- CARNE HUESO Y METAL — Casa Axis -->
 <section class="section" id="hueso"><div class="bg" style="background-image:url('assets/bg/p17.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Carne, Hueso y Metal.</h2><p>Casa Axis, Valencia, España. 2027.</p></div><p>La exposición Carne, Hueso y Metal viaja a Casa Axis, hogar y estudio de Felipe Pantone, como punto de encuentro para artistas de diversas disciplinas. Un espacio donde convergen arte visual, diseño, música y tecnología en un formato íntimo y experimental.</p></div></section>
-<section class="section" id="metal"><div class="bg" style="background-image:url('assets/bg/p18.jpg')"></div><div class="shade"></div><h2 class="huge reveal">Fecha Lanzamiento.<br>Teasers en RRSS.<br>Single + Videoclip.<br>Visualizers. Prensa.<br>Plataformas digitales.</h2></section>
-<section class="section" id="feats"><div class="bg" style="background-image:url('assets/bg/p19.jpg')"></div><div class="shade"></div><h2 class="huge reveal">Este proyecto incluye la colaboración de:</h2></section>
-<section class="section" style="align-items:center"><div class="bg" style="background:#000"></div><div class="grid" id="peopleGrid"></div></section>
+<!-- SHOW NICETO -->
+<section class="section"><div class="bg" style="background-image:url('assets/bg/p16.jpg')"></div><div class="shade"></div><div class="copy reveal"><div><h2 class="kicker">Show Niceto<br>Buenos Aires, Argentina.</h2><p>El show en Niceto es mucho más que un concierto: es el ritual de clausura de un profundo proceso artístico, el punto culminante de un viaje, y a la vez el vibrante pistoletazo de salida hacia la nueva etapa de <b>Yesan.</b></p><p style="margin-top:10px"><b>El 11/12/24 marcó el inicio, el día del accidente que dio vida a Arañado.</b> Dos años después, el <b>11/12/26</b>, lo celebramos tocando el álbum completo, <b>una resurrección en VIVO.</b></p><p style="margin-top:8px">Esta será la primera presentación en vivo de muchas, un show repleto de sorpresas, artistas invitados y referentes de la industria.</p></div><p>Inaugurado en 1998 en Palermo, <b>Niceto Club</b> es un ícono de la música en vivo y la noche de Buenos Aires. Con más de 25 años de trayectoria, el recinto es reconocido por su eclecticismo, albergando desde bandas emergentes hasta artistas internacionales de renombre.<br><br>Artistas que pasaron por los escenarios de Niceto: <i>Tame Impala, Macy Gray, Oliver Tree, Babasónicos, Él Mató a un Policía Motorizado, Juana Molina, Miranda!, Ysy A, Milo J</i>, y muchos más.</p></div></section>
 <section class="section center" id="contacto" style="background:#000;padding:0">
   <video class="contact-vid" muted playsinline preload="metadata">
     <source src="assets/auto-byn.mp4" type="video/mp4">
@@ -370,12 +378,6 @@ const people=[
   {n:'LUCAS VIGNALE',img:'p26',role:'Realización Audiovisual',feat:'',
    intro:'Lucas Vignale es un cineasta y director argentino reconocido por desarrollar una estética cinematográfica y experimental dentro de la música urbana latinoamericana.',
    body:'Se ha convertido en una de las miradas visuales más interesantes de la nueva generación trabajando con artistas como Bizarrap, Duki, Nicki Nicole, Milo J, J Balvin, Trueno, Nathy Peluso y Wos. Escribió y dirigió piezas para el canal de YouTube de Gaspi que superan los 17 millones de visualizaciones. Junto a Lorenzo "Toto" Ferro estrenaron "El Tren Fluvial" en la Berlinale 76, y "La Pasión" fue premiado en el BAFICI 25\' dentro de la Competencia Internacional.'},
-  {n:'DANIEL REINA',img:'p27',role:'Mastering Analógico',feat:'',
-   intro:'Daniel Reina es el fundador de Admire Audio, un proyecto radicado en Valencia especializado en sistemas de alta fidelidad, escucha crítica y cultura sonora analógica vinculada al vinilo y al audio de precisión.',
-   body:'Su trabajo se centra en la curaduría de experiencias de escucha de alta gama, integrando tecnología, diseño acústico y una mirada profundamente audiófila sobre la reproducción musical. Desde Admire Audio desarrolló colaboraciones con artistas, espacios culturales y proyectos inmersivos donde el sonido se aborda como experiencia física, estética y emocional, más allá del consumo musical convencional.'},
-  {n:'FELIPE PANTONE',img:'p28',role:'Artista Visual',feat:'',
-   intro:'Felipe Pantone es un artista argentino-español nacido en Buenos Aires y radicado en Valencia, reconocido internacionalmente por fusionar graffiti, arte cinético, tipografía digital y estética inspirada en la velocidad, la luz y los errores visuales de la era digital.',
-   body:'Su obra trabaja con degradados fluorescentes, geometrías ópticas, efectos moiré y referencias al movimiento, combinando técnicas analógicas y tecnología contemporánea en murales, esculturas e instalaciones. Expuso en galerías y museos de Europa, Asia y Estados Unidos, y colaboró con marcas como Nike, Porsche, Zenith o Mercedes-Benz, convirtiéndose en una de las figuras más influyentes del arte urbano contemporáneo.'},
   {n:'CASA AXIS',img:'p29',role:'Sede y Estudio',feat:'',
    intro:'La casa estudio de Felipe Pantone. En la discoteca de Casa Axis, espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina (Admire Audio), se realiza un camp crucial para Arañado.',
    body:'En la discoteca de Casa Axis —espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina— se realiza un camp crucial para Arañado. Durante una semana, Yesan, Barreto y Dano se internaron a perfeccionar el disco. Felipe Pantone introdujo a Dani Reina.'},
