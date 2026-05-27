@@ -48,11 +48,11 @@
   .tracks{display:grid;align-content:center;gap:20px}
 
   /* Grid & Person */
-  .grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;min-height:78svh}
-  .person{position:relative;min-height:35svh;background:#111 center/cover;display:flex;align-items:end;padding:18px;overflow:hidden;transition:transform .4s var(--ease)}
-  .person:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72));transition:background .6s var(--ease)}
+  .grid{position:relative;z-index:3;width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+  .person{position:relative;min-height:36svh;background:#111 center/cover;display:flex;align-items:end;padding:clamp(16px,1.8vw,28px);overflow:hidden;transition:transform .4s var(--ease)}
+  .person:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.8));transition:background .6s var(--ease)}
   .person:hover:before{background:rgba(0,0,0,.15)}
-  .person span{position:relative;z-index:2;font-size:clamp(18px,2.2vw,36px);font-weight:900;line-height:1.05;text-transform:uppercase;text-align:left}
+  .person span{position:relative;z-index:2;font-size:clamp(15px,1.6vw,26px);font-weight:900;line-height:1.1;text-transform:uppercase;text-align:left;letter-spacing:-.02em}
 
   /* Modal — pantalla completa como en el PDF */
   .modal{position:fixed;z-index:90;inset:0;background:#000;display:flex;opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
@@ -122,6 +122,9 @@
     .mark{width:38px;height:38px}
     .copy,.modal-body{grid-template-columns:1fr;gap:24px}
     .grid{grid-template-columns:repeat(2,1fr)}
+    .person{min-height:32svh;padding:14px}
+    .person span{font-size:clamp(13px,4.2vw,20px)}
+    .person:last-child:nth-child(odd){grid-column:1 / -1;min-height:26svh}
     .album{grid-template-columns:1fr;width:90vw;min-height:auto;padding:20px}
     .album-cover{min-height:260px}
     .hero-title{font-size:22vw}
@@ -130,7 +133,6 @@
     .kicker{font-size:clamp(17px,5.5vw,48px)}
     .links{width:100%;justify-content:space-between;gap:12px}
     .links a{font-size:22px}
-    .person{min-height:26svh}
     .bio-content{padding:clamp(86px,12vh,120px) 22px clamp(60px,8vh,90px);gap:.9em}
     .bio-content p{font-size:clamp(13px,4vw,20px)}
     /* video/embed keep padding 0 on mobile */
@@ -190,7 +192,7 @@
   </div>
 </section>
 
-<section class="section center"><div class="bg" style="background-image:url('assets/bg/p13.jpg')"></div><div class="shade"></div><div><h2 class="huge reveal">ARAÑADO</h2><div class="links reveal"><a href="#carne">Carne</a><a href="#hueso">Hueso</a></div></div><div class="down">↓</div></section>
+<section class="section center"><div class="bg" style="background-image:url('assets/bg/p13.jpg')"></div><div class="shade"></div><div><h2 class="huge reveal">ARAÑADO</h2><div class="links reveal"><a href="#carne">Carne</a><a href="#hueso">Hueso</a><a href="#hueso">Metal</a></div></div><div class="down">↓</div></section>
 
 <!-- DISCO: embed Untitled para pre-escucha -->
 <section class="section embed" id="album">
@@ -208,11 +210,9 @@
 </section>
 
 <!-- COLABORADORES: grid con título integrado -->
-<section class="section" id="feats" style="padding:0;align-items:start;min-height:auto">
+<section class="section" id="feats" style="align-items:start">
   <div class="bg" style="background:#000"></div>
-  <div style="position:relative;z-index:3;width:100%;padding:clamp(96px,12vh,140px) clamp(28px,6vw,92px) clamp(28px,4vh,44px)">
-    <h2 class="reveal" style="font-size:clamp(15px,1.8vw,26px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;margin:0;color:rgba(255,255,255,.6);line-height:1.1">Este proyecto incluye la colaboración de:</h2>
-  </div>
+  <h2 class="reveal" style="position:relative;z-index:3;font-size:clamp(12px,1.3vw,18px);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin:0 0 clamp(20px,3vh,40px);color:rgba(255,255,255,.48);line-height:1.2">Este proyecto incluye<br>la colaboración de:</h2>
   <div class="grid" id="peopleGrid"></div>
 </section>
 <!-- ART LAB -->
@@ -387,9 +387,6 @@ const people=[
   {n:'ANDRÉS MAYO',img:'p32',role:'Ingeniero de Mastering · Dolby Atmos',feat:'',
    intro:'Nominado al Grammy 2026 por "Best Immersive Album", ganador de 2 Latin Grammy y 7 Premios Gardel. Ex presidente mundial de la Audio Engineering Society y uno de los principales referentes de Dolby Atmos en América Latina.',
    body:'Con más de tres décadas de trayectoria como ingeniero de mastering y productor musical, Mayo trabajó con artistas como Gustavo Cerati, Charly García, Luis Alberto Spinetta, Pedro Aznar, Mercedes Sosa y Caetano Veloso, entre muchos otros. Impulsor del desarrollo del audio inmersivo en habla hispana.'},
-  {n:'GONZALO SOLIMANO',img:'p31',pos:'top center',role:'Curador y Director',feat:'',
-   intro:'Gonzalo Solimano es un artista, DJ, productor cultural y curador argentino, reconocido por ser el fundador de Artlab y director de MUTEK Argentina, dos de los proyectos más influyentes del cruce entre arte, música electrónica y tecnología en Buenos Aires.',
-   body:'Su trabajo combina sonido, arte digital, inteligencia artificial, visuales inmersivas y experiencias interdisciplinarias, construyendo una estética vinculada a la sensibilidad contemporánea y la cultura electrónica experimental. Desde Artlab impulsó residencias, exposiciones, ciclos audiovisuales y colaboraciones internacionales que posicionaron a Buenos Aires como uno de los polos más activos de arte digital y creatividad tecnológica en Latinoamérica.'}
 ];
 const grid=document.getElementById('peopleGrid'),modal=document.getElementById('modal'),modalCard=document.getElementById('modalCard');
 people.forEach(p=>{
