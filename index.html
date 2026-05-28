@@ -122,17 +122,17 @@
     .mark{width:38px;height:38px}
     .copy,.modal-body{grid-template-columns:1fr;gap:24px}
     .grid{grid-template-columns:repeat(2,1fr)}
-    .person{min-height:32svh;padding:14px}
-    .person span{font-size:clamp(13px,4.2vw,20px)}
-    .person:last-child:nth-child(odd){grid-column:1 / -1;min-height:26svh}
+    .person{min-height:30svh;padding:12px}
+    .person span{font-size:clamp(12px,4vw,18px)}
     .album{grid-template-columns:1fr;width:90vw;min-height:auto;padding:20px}
     .album-cover{min-height:260px}
-    .hero-title{font-size:22vw}
-    .hero-sub{font-size:clamp(10px,3.5vw,18px);letter-spacing:.18em}
-    .huge{font-size:clamp(34px,10.5vw,170px)}
-    .kicker{font-size:clamp(17px,5.5vw,48px)}
+    .hero-title{font-size:20vw}
+    .hero-sub{font-size:clamp(10px,3.2vw,16px);letter-spacing:.16em}
+    .huge{font-size:clamp(28px,9.5vw,170px);line-height:1}
+    .kicker{font-size:clamp(15px,5vw,48px)}
+    .copy p{font-size:clamp(13px,3.8vw,17px);line-height:1.52}
     .links{width:100%;justify-content:space-between;gap:12px}
-    .links a{font-size:22px}
+    .links a{font-size:20px}
     .bio-content{padding:clamp(86px,12vh,120px) 22px clamp(60px,8vh,90px);gap:.9em}
     .bio-content p{font-size:clamp(13px,4vw,20px)}
     /* video/embed keep padding 0 on mobile */
@@ -360,6 +360,7 @@ if(contactVid){
 
 // ── People grid ─────────────────────────────────────────────────
 const people=[
+  // FILA 1 — Feats
   {n:'ANDY VILANOVA',img:'p21',pos:'top center',role:'Baterista',feat:'ft. en Pies de plomo',
    intro:'Uno de los bateristas más explosivos, versátiles y respetados de la escena argentina. Su estilo combina técnica extrema, musicalidad y una intensidad física poco común, convirtiéndolo en una referencia indiscutida de la batería pesada en Latinoamérica.',
    body:'Reconocido por su participación en Carajo y A.N.I.M.A.L. — dos de las bandas más influyentes del rock pesado en español —, Andy construyó una carrera marcada por la potencia escénica, el virtuosismo y la energía en vivo. En los últimos años trasladó esa impronta al universo urbano trabajando junto a Duki en shows masivos y producciones de gran escala, aportando una fuerza rockera y una contundencia en vivo que ayudaron a redefinir el sonido de las giras urbanas en Argentina.'},
@@ -369,24 +370,16 @@ const people=[
   {n:'JUICY BAE',img:'p23',role:'Cantante y Rapera',feat:'ft. en Fiera',
    intro:'Cantante y rapera sevillana que se convirtió en una de las figuras más singulares de la música urbana española.',
    body:'Su propuesta cruza trap, R&B, afrobeat, electrónica y flamenco, combinando una sensibilidad melódica muy personal con una estética oscura, íntima y experimental. A lo largo de su carrera colaboró con artistas como Nicki Nicole, La Joaqui, La Zowi, Villano Antillano, Polimá Westcoast, entre otros.'},
+  // FILA 2 — Equipo creativo
   {n:'DANO',img:'p24',role:'Dirección Creativa · Producción Musical',feat:'',
    intro:'Uno de los nombres más respetados del hip hop en español, su participación en el proyecto es sinónimo de identidad, criterio y garantía de calidad artística.',
    body:'Como rapero ha colaborado con artistas como Duki, Rels B, Dante Spinetta y Cruz Cafuné, entre otros. Como productor musical, destaca su trabajo en "Disciplina" de Lali y en "Una Niña Inútil" de Cazzu. En el plano audiovisual, participó en la dirección y desarrollo visual de piezas como "Llorando en la Limo" de C. Tangana, "No me llores" y "Goteo" de Duki, ayudando a construir una estética que marcó una era dentro de la música en español.'},
-  {n:'FEDE BARRETO',img:'p25',role:'Producción Musical',feat:'',
-   intro:'Don Barreto — Federico Barreto — es un productor musical, compositor e ingeniero de sonido argentino radicado en Buenos Aires, vinculado a la nueva escena del pop y rock alternativo argentino.',
-   body:'Su trabajo mezcla producción digital contemporánea, texturas electrónicas y sensibilidad rockera, participando en proyectos de artistas como Lali, Dillom y BB Asul. En los últimos años se consolidó como uno de los productores emergentes más interesantes de la escena argentina por su capacidad de combinar sonido mainstream con una estética más experimental y oscura.'},
-  {n:'LUCAS VIGNALE',img:'p26',role:'Realización Audiovisual',feat:'',
-   intro:'Lucas Vignale es un cineasta y director argentino reconocido por desarrollar una estética cinematográfica y experimental dentro de la música urbana latinoamericana.',
-   body:'Se ha convertido en una de las miradas visuales más interesantes de la nueva generación trabajando con artistas como Bizarrap, Duki, Nicki Nicole, Milo J, J Balvin, Trueno, Nathy Peluso y Wos. Escribió y dirigió piezas para el canal de YouTube de Gaspi que superan los 17 millones de visualizaciones. Junto a Lorenzo "Toto" Ferro estrenaron "El Tren Fluvial" en la Berlinale 76, y "La Pasión" fue premiado en el BAFICI 25\' dentro de la Competencia Internacional.'},
-  {n:'CASA AXIS',img:'p29',role:'Sede y Estudio',feat:'',
-   intro:'La casa estudio de Felipe Pantone. En la discoteca de Casa Axis, espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina (Admire Audio), se realiza un camp crucial para Arañado.',
-   body:'En la discoteca de Casa Axis —espacio intervenido con una instalación de sonido analógica de altísima fidelidad diseñada por Daniel Reina— se realiza un camp crucial para Arañado. Durante una semana, Yesan, Barreto y Dano se internaron a perfeccionar el disco. Felipe Pantone introdujo a Dani Reina.'},
   {n:'BRIAN TAYLOR',img:'p30',pos:'top center',role:'Ingeniero de mezcla · Productor Musical',feat:'',
    intro:'Brian Taylor es un músico, ingeniero de mezcla y productor argentino reconocido por su versatilidad y su trabajo en algunos de los proyectos más importantes de la música argentina contemporánea.',
    body:'Ganador del Premio Gardel de Oro por su trabajo junto a Trueno y Marilina Bertoldi, se consolidó como una de las figuras técnicas y creativas más destacadas de la nueva generación. Destaca su trabajo en "Ameri" de Duki, "Atrevido" y "Bien o Mal" de Trueno, "Prender un fuego" de Marilina Bertoldi, entre otros.'},
-  {n:'ANDRÉS MAYO',img:'p32',role:'Ingeniero de Mastering · Dolby Atmos',feat:'',
-   intro:'Nominado al Grammy 2026 por "Best Immersive Album", ganador de 2 Latin Grammy y 7 Premios Gardel. Ex presidente mundial de la Audio Engineering Society y uno de los principales referentes de Dolby Atmos en América Latina.',
-   body:'Con más de tres décadas de trayectoria como ingeniero de mastering y productor musical, Mayo trabajó con artistas como Gustavo Cerati, Charly García, Luis Alberto Spinetta, Pedro Aznar, Mercedes Sosa y Caetano Veloso, entre muchos otros. Impulsor del desarrollo del audio inmersivo en habla hispana.'},
+  {n:'LUCAS VIGNALE',img:'p26',role:'Realización Audiovisual',feat:'',
+   intro:'Lucas Vignale es un cineasta y director argentino reconocido por desarrollar una estética cinematográfica y experimental dentro de la música urbana latinoamericana.',
+   body:'Se ha convertido en una de las miradas visuales más interesantes de la nueva generación trabajando con artistas como Bizarrap, Duki, Nicki Nicole, Milo J, J Balvin, Trueno, Nathy Peluso y Wos. Escribió y dirigió piezas para el canal de YouTube de Gaspi que superan los 17 millones de visualizaciones. Junto a Lorenzo "Toto" Ferro estrenaron "El Tren Fluvial" en la Berlinale 76, y "La Pasión" fue premiado en el BAFICI 25\' dentro de la Competencia Internacional.'},
 ];
 const grid=document.getElementById('peopleGrid'),modal=document.getElementById('modal'),modalCard=document.getElementById('modalCard');
 people.forEach(p=>{
